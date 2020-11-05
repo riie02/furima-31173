@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_t :user
+  has_one_attached :image
 
   #with_options presence: true do
     #validates :name,       
