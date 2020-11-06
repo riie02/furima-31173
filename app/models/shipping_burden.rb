@@ -1,4 +1,4 @@
-class ShippingBurden < ApplicationRecord
+class ShippingBurden < ActiveHash::Base
   self.data = [
     { id: 1, name: '--' },
     { id: 2, name: '着払い（購入者負担）' },
@@ -6,7 +6,5 @@ class ShippingBurden < ApplicationRecord
   ]
 
   include ActiveHash::Associations
-  has_many :itams
-  
-  end
+  has_many :items
 end
