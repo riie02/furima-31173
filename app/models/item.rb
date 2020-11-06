@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  belongs_t :user
+  belongs_to :user
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -10,15 +10,21 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 
   with_options presence: true do
-    validates :name,       
-    validates :description,
+    validates :name
+    validates :description
     validates :category_id
     validates :condition_id
     validates :shipping_burden_id
     validates :shipping_area_id
     validates :shipping_day_id
-    validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 9,999,999, messeges:"Price Out of setting range"}, format: {with: /\A[0-9]+\z/, messeges:"Price Half-width number"}
     validates :image
+    validates :price,
+                :numericality => {
+                  :greater_than_or_equal_to => 299,
+                  :less_than_or_equal_to => 9999999,
+                  :message => "Price Out of setting range"
+                },
+                :format  => { with: /\A[0-9]+\z/, messeges: "Price Half-width number"}
   end
 
   with_options numericality: { other_than: 1, messeage:"Select" } do
@@ -28,5 +34,4 @@ class Item < ApplicationRecord
     validates :shipping_area_id
     validates :shipping_day_id
   end
-
 end
