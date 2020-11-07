@@ -17,8 +17,6 @@ class User < ApplicationRecord
     validates :birth_day
   end
 
-
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, format: { with: /\A[a-zA-Z0-9]+\z/ }
-
 end

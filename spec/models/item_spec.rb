@@ -53,7 +53,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'shipping_day_idが空だと登録できない' do
-      @item.shipping_day_id  = nil
+      @item.shipping_day_id = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day can't be blank")
     end
@@ -65,13 +65,13 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格の範囲が¥300~¥9,999,999の間でないと登録できない' do
-      @item.price = "1000"
+      @item.price = '1000'
       @item.valid?
       expect(@item.errors.full_messages).to include
     end
 
     it '販売価格は半角数字でないと登録できない' do
-      @item.price = "１０００"
+      @item.price = '１０００'
       @item.valid?
       expect(@item.errors.full_messages).to include
     end
@@ -79,7 +79,7 @@ RSpec.describe Item, type: :model do
     it 'userが紐付いていないと保存できない' do
       @item.user = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("User must exist")
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end
 end

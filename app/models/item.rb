@@ -20,15 +20,15 @@ class Item < ApplicationRecord
     validates :shipping_day_id
     validates :image
     validates :price,
-                :numericality => {
-                  :greater_than_or_equal_to => 299,
-                  :less_than_or_equal_to => 9999999,
-                  :message => "Price Out of setting range"
-                },
-                :format  => { with: /\A[0-9]+\z/, messeges: "Price Half-width number"}
+              numericality: {
+                greater_than_or_equal_to: 299,
+                less_than_or_equal_to: 9_999_999,
+                message: 'Price Out of setting range'
+              },
+              format: { with: /\A[0-9]+\z/, messeges: 'Price Half-width number' }
   end
 
-  with_options numericality: { other_than: 1, messeage:"Select" } do
+  with_options numericality: { other_than: 1, messeage: 'Select' } do
     validates :category_id
     validates :condition_id
     validates :shipping_burden_id
