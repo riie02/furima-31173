@@ -29,33 +29,33 @@ RSpec.describe Item, type: :model do
     end
 
     it 'category_idが1だった場合登録できない' do
-      @item.category_id = nil
+      @item.category_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category can't be blank")
+      expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
 
     it 'condition_idが1だった場合登録できない' do
-      @item.condition_id = nil
+      @item.condition_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Condition can't be blank")
+      expect(@item.errors.full_messages).to include("Condition must be other than 1")
     end
 
     it 'shipping_burden_idが1だった場合登録できない' do
-      @item.shipping_burden_id = nil
+      @item.shipping_burden_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping burden can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping burden must be other than 1")
     end
 
     it 'shipping_area_idが1だった場合登録できない' do
-      @item.shipping_area_id = nil
+      @item.shipping_area_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping area can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
     end
 
     it 'shipping_day_idが1だった場合登録できない' do
-      @item.shipping_day_id = nil
+      @item.shipping_day_id = "1"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+      expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
     end
 
     it 'priceが空だと登録できない' do
@@ -64,8 +64,14 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
 
-    it '価格の範囲が¥300~¥9,999,999の間でないと登録できない' do
-      @item.price = '1000'
+    it '価格が299円以下では登録できないこと' do
+      @item.price = '299'
+      @item.valid?
+      expect(@item.errors.full_messages).to include
+    end
+
+    it '価格が10,000,000以上では登録できないこと' do
+      @item.price = '10,000,000'
       @item.valid?
       expect(@item.errors.full_messages).to include
     end
