@@ -18,7 +18,6 @@ class Item < ApplicationRecord
     validates :shipping_burden_id
     validates :shipping_area_id
     validates :shipping_day_id
-    validates :image
     validates :price,
               numericality: {
                 greater_than_or_equal_to: 299,
