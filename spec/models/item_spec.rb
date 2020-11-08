@@ -31,31 +31,31 @@ RSpec.describe Item, type: :model do
     it 'category_idが1だった場合登録できない' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 1")
+      expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
 
     it 'condition_idが1だった場合登録できない' do
       @item.condition_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      expect(@item.errors.full_messages).to include('Condition must be other than 1')
     end
 
     it 'shipping_burden_idが1だった場合登録できない' do
       @item.shipping_burden_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping burden must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping burden must be other than 1')
     end
 
     it 'shipping_area_idが1だった場合登録できない' do
       @item.shipping_area_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping area must be other than 1')
     end
 
     it 'shipping_day_idが1だった場合登録できない' do
       @item.shipping_day_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
+      expect(@item.errors.full_messages).to include('Shipping day must be other than 1')
     end
 
     it 'priceが空だと登録できない' do
@@ -71,7 +71,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格が10,000,000以上では登録できないこと' do
-      @item.price = 10,000,000
+      @item.price = 10, 0o00, 0o00
       @item.valid?
       expect(@item.errors.full_messages).to include
     end
