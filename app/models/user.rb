@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
 
   with_options presence: true do
@@ -15,8 +17,6 @@ class User < ApplicationRecord
     validates :birth_day
   end
 
-
   validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, format: { with: /\A[a-zA-Z0-9]+\z/ }
-
 end
