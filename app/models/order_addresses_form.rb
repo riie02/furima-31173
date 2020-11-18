@@ -3,11 +3,11 @@ class OrderAddressesForm
   attr_accessor :postal_code, :prefecture_id, :city, :street_address, :building_name, :phone_number, :user_id, :item_id
 
   with_options presence: true do
-    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "Postal code Input correctly" }
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Postal code is invalid. Include hyphen(-)" }
     validates :prefecture_id, numericality: { other_than: 1, message: 'Select' }
     validates :city
     validates :street_address
-    validates :phone_number, format: { with: /\A(0{1}\d{9,10})\z/, message: "Phone number Input only number" }
+    validates :phone_number, format: { with: /\A\d{10}$|^\d{11}\z/, message: "Phone number Input only number" }
   end
 
   def save
