@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :create]
-  
+  before_action :purchased, only: [:index]
+
   def index
     @order_addresses_form = OrderAddressesForm.new
     if current_user == @item.user
@@ -27,6 +28,12 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def purchased
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 
 end
