@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :create]
   before_action :purchased, only: [:index]
-  
+
   def index
     @order_addresses_form = OrderAddressesForm.new
     if current_user == @item.user
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_82a224a7c25e56512200f5af"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item[:price],
       card: order_params[:token],
