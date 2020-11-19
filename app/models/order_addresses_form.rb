@@ -9,6 +9,8 @@ class OrderAddressesForm
     validates :street_address
     validates :phone_number, format: { with: /\A\d{10}$|^\d{11}\z/, message: 'Phone number Input only number' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
   def save
