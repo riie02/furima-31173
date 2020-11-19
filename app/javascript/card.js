@@ -5,7 +5,6 @@ const pay = () => {
     e.preventDefault();
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
-
     const card = {
       number: formData.get("order_addresses_form[number]"),
       cvc: formData.get("order_addresses_form[cvc]"),
@@ -17,7 +16,6 @@ const pay = () => {
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);  
       }
@@ -28,8 +26,6 @@ const pay = () => {
 
       document.getElementById("charge-form").submit();
     });
-      
-      
   });
 };
 
