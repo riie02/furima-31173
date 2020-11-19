@@ -6,7 +6,7 @@ RSpec.describe OrderAddressesForm, type: :model do
       @order_addresses_form = FactoryBot.build(:order_addresses_form)
     end
 
-    content '商品購入ができる時' do
+    context '商品購入ができる時' do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_addresses_form).to be_valid
       end
@@ -75,15 +75,14 @@ RSpec.describe OrderAddressesForm, type: :model do
       it 'user_idが空では購入できないこと' do
         @order_addresses_form.token = nil
         @order_addresses_form.valid?
-        expect(@order_addresses_form.errors.full_messages).to include
+        expect(@order_addresses_form.errors.full_messages).to include("Token can't be blank")
       end
 
       it 'item_idが空では購入できないこと' do
         @order_addresses_form.token = nil
         @order_addresses_form.valid?
-        expect(@order_addresses_form.errors.full_messages).to include
+        expect(@order_addresses_form.errors.full_messages).to include("Token can't be blank")
       end
-      
     end
   end
 end
